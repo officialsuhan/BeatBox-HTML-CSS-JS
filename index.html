@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b12">
+  <title>BeatBox — Music Player</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#" aria-label="BeatBox home"><span class="brand-mark">♫</span><span>beat<span class="brand-accent">box</span></span></a>
+      <div class="nav-label">MENU</div>
+      <button class="nav-item active" data-view="all"><span>▦</span> Discover <span class="nav-count">50</span></button>
+      <button class="nav-item" data-view="favorites"><span>♡</span> Favorites</button>
+      <button class="nav-item" data-view="recent"><span>◷</span> Recently played</button>
+      <div class="sidebar-divider"></div>
+      <div class="nav-label">YOUR LIBRARY</div>
+      <div class="library-note"><span class="library-icon">♫</span><div><strong>50 original tracks</strong><small>Made for BeatBox</small></div></div>
+      <div class="sidebar-bottom"><div class="equalizer-mini"><i></i><i></i><i></i><i></i><i></i></div><p>Good music.<br><strong>Good mood.</strong></p><span class="version">BEATBOX WEB PLAYER · 1.0</span></div>
+    </aside>
+
+    <main class="main-content">
+      <header class="topbar">
+        <div class="back-forward"><button aria-label="Go back" id="backBtn">‹</button><button aria-label="Go forward" id="forwardBtn">›</button></div>
+        <div class="search-wrap"><span class="search-icon">⌕</span><input id="searchInput" type="search" placeholder="Search songs, moods, or genres..." autocomplete="off"><kbd>⌘ K</kbd></div>
+        <div class="profile"><div class="profile-avatar">B</div><div class="profile-text"><strong>Listener</strong><small>Free account</small></div><span>⌄</span></div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy"><div class="eyebrow"><span class="live-dot"></span> YOUR DAILY SOUNDTRACK</div><h1>Find your<br><span>own rhythm.</span></h1><p>Press play and let the good vibes take over.</p><button id="heroPlayBtn" class="primary-btn"><span>▶</span> Play something</button></div>
+        <div class="hero-art" aria-hidden="true"><div class="orb orb-one"></div><div class="orb orb-two"></div><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div><div class="art-center">♫</div><div class="art-label">BEATBOX<br><small>STUDIO SESSIONS</small></div><div class="floating-note note-one">♪</div><div class="floating-note note-two">♫</div></div>
+        <div class="hero-number"><strong>50</strong><span>ORIGINAL<br>TRACKS</span></div>
+      </section>
+
+      <section class="mood-section"><div class="section-heading"><div><p class="eyebrow muted">PICK YOUR VIBE</p><h2>Made for your mood</h2></div></div><div class="mood-pills"><button class="mood-pill selected" data-mood="All">✦ All vibes</button><button class="mood-pill" data-mood="Chill">☁ Chill</button><button class="mood-pill" data-mood="Focus">◉ Focus</button><button class="mood-pill" data-mood="Energy">↗ Energy</button><button class="mood-pill" data-mood="Dreamy">✧ Dreamy</button></div></section>
+
+      <section class="tracks-section">
+        <div class="section-heading track-heading"><div><p class="eyebrow muted" id="listEyebrow">THE COLLECTION</p><h2 id="listTitle">All tracks <span class="track-total" id="trackCount">50 songs</span></h2></div><div class="sort-wrap"><span>Sort by</span><select id="sortSelect" aria-label="Sort tracks"><option value="featured">Featured</option><option value="title">Title A–Z</option><option value="duration">Duration</option></select></div></div>
+        <div class="track-table-head"><span>#</span><span>TRACK</span><span>MOOD</span><span>LENGTH</span><span></span></div>
+        <div id="trackList" class="track-list" aria-live="polite"></div>
+        <div id="emptyState" class="empty-state hidden"><div>♫</div><h3>No tracks found</h3><p>Try another search or mood.</p><button class="secondary-btn" id="clearFiltersBtn">Clear filters</button></div>
+        <p class="collection-footnote">These 50 short instrumental tracks are generated in your browser using the Web Audio API. No music files or external audio streams are required.</p>
+      </section>
+    </main>
+  </div>
+
+  <footer class="player-bar">
+    <div class="now-playing"><div class="mini-cover" id="miniCover"><span>♫</span></div><div class="now-meta"><strong id="nowTitle">Choose a track</strong><small id="nowArtist">BeatBox Studio · Original synth</small></div><button id="currentFavBtn" class="icon-btn favorite-current" aria-label="Favorite current track">♡</button></div>
+    <div class="player-center"><div class="player-controls"><button id="shuffleBtn" class="control-btn" aria-label="Shuffle" title="Shuffle">⤨</button><button id="prevBtn" class="control-btn big-glyph" aria-label="Previous track">|◀</button><button id="playPauseBtn" class="play-btn" aria-label="Play">▶</button><button id="nextBtn" class="control-btn big-glyph" aria-label="Next track">▶|</button><button id="repeatBtn" class="control-btn" aria-label="Repeat" title="Repeat">↻</button></div><div class="timeline"><span id="currentTime">0:00</span><input type="range" id="progressBar" min="0" max="1000" value="0" aria-label="Track progress"><span id="durationLabel">0:00</span></div></div>
+    <div class="player-extra"><span class="volume-icon">◖</span><input type="range" id="volumeSlider" min="0" max="100" value="65" aria-label="Volume"><span id="volumeValue">65%</span></div>
+  </footer>
+  <div id="toast" class="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
